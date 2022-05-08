@@ -60,10 +60,8 @@ def _run_model(model, text_tokens, relation_tokens):
     inputs = torch.tensor([[101] + relation_tokens
                            + [102] + text_tokens
                            + [102]
-                           ])
-    length = torch.tensor([len(relation_tokens) + 1])
-    inputs = inputs.cuda()
-    length = inputs.cuda()
+                           ], device="cuda:0" if torch.cuda.is_available() else "cpu")
+    length = torch.tensor([len(relation_tokens) + 1], device="cuda:0" if torch.cuda.is_available() else "cpu")
     subj_starts, subj_ends, obj_starts, obj_ends = model(inputs,
                                                          length)
     return subj_starts[0][0], subj_ends[0][0], obj_starts[0][0], obj_ends[0][0]
