@@ -13,12 +13,6 @@ setup(name='zero-shot-re',
       long_description_content_type="text/markdown",
       packages=['zero_shot_re',
                 ],
-      install_requires=[
-          'numpy==1.19.1',
-          'transformers==4.9.2',
-          'torch==1.9.0',
-          'jupyterlab==2.2.9',
-      ],
       classifiers=[
           'License :: OSI Approved :: MIT License',
       ],
