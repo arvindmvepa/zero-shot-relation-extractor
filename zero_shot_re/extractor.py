@@ -62,6 +62,8 @@ def _run_model(model, text_tokens, relation_tokens):
                            + [102]
                            ])
     length = torch.tensor([len(relation_tokens) + 1])
+    inputs = inputs.cuda()
+    length = inputs.cuda()
     subj_starts, subj_ends, obj_starts, obj_ends = model(inputs,
                                                          length)
     return subj_starts[0][0], subj_ends[0][0], obj_starts[0][0], obj_ends[0][0]
