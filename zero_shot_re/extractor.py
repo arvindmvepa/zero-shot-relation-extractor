@@ -62,7 +62,10 @@ def _run_model(model, text_tokens, relation_tokens):
                            + [102]
                            ])
     length = torch.tensor([len(relation_tokens) + 1])
-    subj_starts, subj_ends, obj_starts, obj_ends = model(inputs.cpu(), length)
+    subj_starts, subj_ends, obj_starts, obj_ends = model(inputs.cpu()
+                                                         if device == "cpu"
+                                                         else inputs,
+                                                         length)
     return subj_starts[0][0], subj_ends[0][0], obj_starts[0][0], obj_ends[0][0]
 
 
